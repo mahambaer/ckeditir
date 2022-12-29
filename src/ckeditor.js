@@ -30,6 +30,7 @@ import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript.js';
 import Table from '@ckeditor/ckeditor5-table/src/table.js';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar.js';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
+import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 
 class Editor extends BalloonEditor {}
 
@@ -61,7 +62,8 @@ Editor.builtinPlugins = [
 	Superscript,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	SimpleUploadAdapter
 ];
 
 // Editor configuration.
@@ -105,6 +107,19 @@ Editor.defaultConfig = {
 			'tableRow',
 			'mergeTableCells'
 		]
+	},
+	simpleUpload: {
+		// The URL that the images are uploaded to.
+		uploadUrl: 'http://example.com',
+
+		// Enable the XMLHttpRequest.withCredentials property.
+		withCredentials: true,
+
+		// Headers sent along with the XMLHttpRequest to the upload server.
+		headers: {
+			'X-CSRF-TOKEN': 'CSRF-Token',
+			Authorization: 'Bearer <JSON Web Token>'
+		}
 	}
 };
 
